@@ -13,7 +13,41 @@
 
 <body>
 
-    <script src="assets/javascript/app.js"></script>
+
+
+    <!-- Submission Form -->
+    <div class="row">
+        <form class="col s12">
+            <div class='row'>
+                <div class="input-field col s6">
+                    <input placeholder='Train Name' type='text' id='latestTrainName' class="validate" />
+                    <label class='active' for='latestTrainName'>Train Name</label>
+                </div>
+            </div>
+            <div class='row'>
+                    <div class="input-field col s6">
+                        <input placeholder='Destination' type='text' id='latestDestination' class="validate" />
+                        <label class='active' for='latestDestination'>Destination</label>
+                    </div>
+                </div>
+                <div class='row'>
+                        <div class="input-field col s6">
+                            <input placeholder='First Train Time(HH:mm)' type='time' id='firstTrainTime' class="validate" />
+                            <label class='active' for='firstTrainTime'>First Train Time(HH:mm)</label>
+                        </div>
+                    </div>
+                    <div class='row'>
+                            <div class="input-field col s6">
+                                <input placeholder='Destination' type='number' min='1' max='60' id='frequencyMins' class="validate" />
+                                <label class='active' for='frequencyMins'>Frequency (min)</label>
+                            </div>
+                        </div>
+
+              <button id='saveButton'>Submit</button>
+            <script src="assets/javascript/app.js"></script>
+        </form>
+    </div>
+
 
 </body>
 
