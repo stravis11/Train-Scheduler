@@ -9,10 +9,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+  </head>
 
 <body>
 
+<!-- Current Train Schedule Table -->
+<div class='row'>
+<table class="striped">
+        <thead>
+          <tr>
+              <th >Train Name</th>
+              <th>Destination</th>
+              <th>Frequency (min)</th>
+              <th>Next Arrival</th>
+              <th>Minutes Away</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr id='trainNameCol'>
+            <td>Berlin</td>
+            <td>Paris</td>
+            <td>60</td>
+          </tr>
+          <tr id='destinationCol'>
+            <td>Amsterdam</td>
+            <td>Zurich</td>
+            <td>45</td>
+          </tr>
+          <tr id=frquencyCol>
+            <td>London</td>
+            <td>Edinburgh</td>
+            <td>120</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>          
 
 
     <!-- Submission Form -->
@@ -20,20 +53,20 @@
         <form class="col s12">
             <div class='row'>
                 <div class="input-field col s6">
-                    <input placeholder='Train Name' type='text' id='latestTrainName' class="validate" />
-                    <label class='active' for='latestTrainName'>Train Name</label>
+                    <input placeholder='Train Name' type='text' id='trainName' class="validate" />
+                    <label class='active' for='trainName'>Train Name</label>
                 </div>
             </div>
             <div class='row'>
                     <div class="input-field col s6">
-                        <input placeholder='Destination' type='text' id='latestDestination' class="validate" />
-                        <label class='active' for='latestDestination'>Destination</label>
+                        <input placeholder='Destination' type='text' id='destination' class="validate" />
+                        <label class='active' for='destination'>Destination</label>
                     </div>
                 </div>
                 <div class='row'>
                         <div class="input-field col s6">
-                            <input placeholder='First Train Time(HH:mm)' type='time' id='firstTrainTime' class="validate" />
-                            <label class='active' for='firstTrainTime'>First Train Time(HH:mm)</label>
+                            <input placeholder='First Train Time(HH:mm)' type='time' id='firstTrain' class="validate" />
+                            <label class='active' for='firstTrain'>First Train Time(HH:mm:AM/PM)</label>
                         </div>
                     </div>
                     <div class='row'>
