@@ -49,12 +49,12 @@ $("#saveButton").on("click", function () {
   database.ref().set(trainInfo);
 
   // Clean input fields
-  clearForm()
+  clearInputFields()
 
 });
 
 // Function to clear submission fields
-function clearForm() {
+function clearInputFields() {
   $("#trainName").val("");
   $("#destination").val("");
   $("#firstTrain").val("");
@@ -76,6 +76,7 @@ database.ref().on("child_added", function (childSnapshot) {
 
   // Current Time
   var currentTime = moment();
-  console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-  
+  console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
+
+
 });
