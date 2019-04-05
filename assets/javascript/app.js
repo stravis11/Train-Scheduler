@@ -30,19 +30,19 @@ $("#saveButton").on("click", function () {
   trainName = $("#trainName").val().trim();
   destination = $("#destination").val().trim();
   firstTrain = $("#firstTrain").val().trim();
-  frequency = $("#frequencyMins").val().trim();
+  trainFrequency = $("#frequencyMins").val().trim();
 
   console.log("Train Name: " + trainName);
   console.log("Destination: " + destination);
   console.log("First Train: " + firstTrain);
-  console.log("Train Frequency: " + frequency);
+  console.log("Train Frequency: " + trainFrequency);
 
   // Creates variables to connect to firebase
   var trainInfo = {
     trainName: trainName,
     destination: destination,
     firstTrain: firstTrain,
-    frequency: frequency
+    trainFrequency: trainFrequency
   };
 
   // Push trainInfo to database
@@ -61,25 +61,43 @@ function clearInputFields() {
   $("#frequencyMins").val("");
 };
 
-database.ref().on("child_added", function (childSnapshot) {
-  console.log(childSnapshot.val());
+database.ref().on("value", function (snapshot) {
+  console.log(snapshot.val());
 
   // Store firebase data into variables.
-  trainName = childSnapshot.val().trainName;
-  destination = childSnapshot.val().destination;
-  firstTrain = childSnapshot.val().firstTrain;
-  frequency = childSnapshot.val().frequency;
+  trainName = snapshot.val().trainName;
+  destination = snapshot.val().destination;
+  firstTrain = snapshot.val().firstTrain;
+  trainFrequency = snapshot.val().trainFrequency;
+
+  // Employee Info
+  console.log(trainName);
+  console.log(destination);
+  console.log(firstTrain);
+  console.log(trainFrequency);
 
   // First Time (pushed back 1 year to make sure it comes before current time)
-  firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-  console.log(firstTimeConverted);
+  firstConvertedTime = moment(firstTrain, "HH:mm").subtract(1, "years");
+  console.log("FIRST CONVERTED TIME: " + firstConvertedTime);
 
   // Current Time
   var currentTime = moment();
-  console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
+  console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
-// Difference between the times
-var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-console.log("DIFFERENCE IN TIME: " + diffTime);
+  // Difference between the times
+  var diffTime = moment().diff(moment(firstConvertedTime), "minutes");
+  console.log("DIFFERENCE IN TIME: " + diffTime);
+
+  // Time apart
+  var timeApart = diffTime % trainFrequency;
+  console.log("TIME APART: " + timeApart);
+
+  // Minute until time arrival
+  trainArrival = trainFrequency - timeApart;
+  console.log("MINUTES TILL TRAIN: " + trainArrival);
+
+  // Next Train
+  nextTrain = moment().add(trainArrival, "minutes");
+  console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
 });
