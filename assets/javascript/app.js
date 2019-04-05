@@ -100,4 +100,15 @@ database.ref().on("value", function (snapshot) {
   nextTrain = moment().add(trainArrival, "minutes");
   console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
+   // Creating new row
+   var newRow = $("<tr>").append(
+    $("<td>").text(trainName),
+    $("<td>").text(destination),
+    $("<td>").text(trainFrequency),
+    $("<td>").text(nextTrain),
+    $("<td>").text(trainArrival)
+     );
+
+     //Append newRow to the table
+     $("#trainSchedule > tbody").append(newRow);
 });
