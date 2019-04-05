@@ -58,7 +58,7 @@ function clearInputFields() {
   $("#trainName").val("");
   $("#destination").val("");
   $("#firstTrain").val("");
-  $("#frequency").val("");
+  $("#frequencyMins").val("");
 };
 
 database.ref().on("child_added", function (childSnapshot) {
@@ -78,5 +78,8 @@ database.ref().on("child_added", function (childSnapshot) {
   var currentTime = moment();
   console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
 
+// Difference between the times
+var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+console.log("DIFFERENCE IN TIME: " + diffTime);
 
 });
